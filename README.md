@@ -45,3 +45,24 @@
 
 ## Kubernetes (k3s)
 ### Applications
+#### ArgoCD
+#### Cert Manager
+#### Cloudflare Tunnels
+#### Coder
+#### Fresh RSS
+#### Harbor
+#### Homarr
+#### Immich
+#### Jellyfin
+#### Jenkins
+#### Keycloak
+#### Nvidia GPU Operator
+#### Obsidian
+#### Ollama
+#### Open Web UI
+#### Satisfactory Server
+#### Spotify Clean Up App
+#### Tiny Media Manager
+#### Vault
+#### Vault Warden
+#### Vault Secrets Operator
