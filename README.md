@@ -30,39 +30,60 @@
 ## Proxmox
 ### Applications
 #### Pihole
-- The Pi-hole is a DNS sinkhole that protects your devices from unwanted content, without installing any client-side software.
+- Description: The Pi-hole is a DNS sinkhole that protects your devices from unwanted content, without installing any client-side software.
 - Docs: https://docs.pi-hole.net/
 #### Home Assistant
-- Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts.
+- Description: Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts.
 - Docs: https://www.home-assistant.io/docs/
 #### RustDesk
-- RustDesk is a full-featured open source remote control alternative for self-hosting and security with minimal configuration.
+- Description: RustDesk is a full-featured open source remote control alternative for self-hosting and security with minimal configuration.
 - Docs: https://rustdesk.com/docs/en/self-host/
 #### K3S Control Node
-- Control node for the k3s cluster
+- Description: Control node for the k3s cluster
 #### K3S Worker Node
-- Worker node for the k3s cluster
+- Description: Worker node for the k3s cluster
 
 ## Kubernetes (k3s)
 ### Applications
 #### ArgoCD
+- Description: 
 #### Cert Manager
+- Description:
 #### Cloudflare Tunnels
+- Description:
 #### Coder
+- Description:
 #### Fresh RSS
+- Description:
 #### Harbor
+- Description:
 #### Homarr
+- Description:
 #### Immich
+- Description:
 #### Jellyfin
+- Description:
 #### Jenkins
+- Description:
 #### Keycloak
+- Description:
 #### Nvidia GPU Operator
+- Description:
 #### Obsidian
+- Description:
 #### Ollama
+- Description:
 #### Open Web UI
+- Description:
 #### Satisfactory Server
+- Description:
 #### Spotify Clean Up App
+- Description:
 #### Tiny Media Manager
+- Description:
 #### Vault
+- Description:
 #### Vault Warden
+- Description:
 #### Vault Secrets Operator
+- Description:
