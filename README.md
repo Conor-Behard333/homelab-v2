@@ -29,6 +29,18 @@
 
 ## Proxmox
 ### Applications
+#### Pihole
+- Docs: https://docs.pi-hole.net/
+#### Home Assistant
+- Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts.
+##### Docs
+- https://www.home-assistant.io/docs/
+#### RustDesk
+- RustDesk is a full-featured open source remote control alternative for self-hosting and security with minimal configuration.
+- Docs: https://rustdesk.com/docs/en/self-host/
+#### K3S Control Node
+- Control node for the k3s cluster
+#### K3S Worker Node
 
 ## Kubernetes (k3s)
 ### Applications
