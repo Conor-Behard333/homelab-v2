@@ -1,0 +1,26 @@
+kind: ZarfPackageConfig
+metadata:
+  name: argocd
+  description: Example showcasing installing ArgoCD
+
+variables:
+  - name: NAMESPACE
+    default: tmm2
+
+  - name: HOST_NAME
+    default: tmm.lan
+
+components:
+ - name: tiny-media-manager
+   required: true
+   manifests:
+    - name: tmm-deployment
+      namespace: tmm2
+      files:
+          - ../../src/tiny-media-manager/ns.yaml
+          - ../../src/tiny-media-manager/deployment.yaml
+          - ../../src/tiny-media-manager/svc.yaml
+          - ../../src/tiny-media-manager/ingress.yaml
+          - ../../src/tiny-media-manager/cert.yaml
+   images:
+     - tinymediamanager/tinymediamanager:5.0.7
