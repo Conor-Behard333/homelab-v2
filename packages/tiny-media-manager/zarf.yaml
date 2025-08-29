@@ -5,7 +5,7 @@ metadata:
 
 variables:
   - name: NAMESPACE
-    default: tmm2
+    default: tmm
 
   - name: HOST_NAME
     default: tmm.lan
@@ -15,7 +15,7 @@ components:
    required: true
    manifests:
     - name: tmm-deployment
-      namespace: tmm2
+      namespace: tmm
       files:
           - ../../src/tiny-media-manager/ns.yaml
           - ../../src/tiny-media-manager/deployment.yaml
