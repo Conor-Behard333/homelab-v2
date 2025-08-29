@@ -1,7 +1,7 @@
 kind: ZarfPackageConfig
 metadata:
-  name: argocd
-  description: Example showcasing installing ArgoCD
+  name: "tiny-media-manager"
+  description: deploy tiny media manager
 
 variables:
   - name: NAMESPACE
