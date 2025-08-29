@@ -54,9 +54,11 @@
 #### Nginx
 #### Cloudflare Tunnels
 ---
-### Storage
+### Storage/Backup
 #### Cloudnative Postgres
 #### Harbor
+#### Velero
+#### Restic
 ---
 ### GPU
 #### Nvidia GPU Operator
