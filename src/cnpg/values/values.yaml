@@ -1,0 +1,5 @@
+# image:
+#   tag: 1.27.0
+# additionalEnv:
+#   - name: OPERATOR_IMAGE_NAME
+#     value: "###ZARF_REGISTRY###/cloudnative-pg/cloudnative-pg:1.27.0"

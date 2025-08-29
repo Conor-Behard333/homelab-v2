@@ -1,0 +1,17 @@
+kind: ZarfPackageConfig
+metadata:
+  name: cloud-native-postgres
+  description: deploy cnpg
+
+components:
+ - name: cnpg
+   required: true
+   charts:
+    - name: cloudnative-pg
+      namespace: cnpg-system
+      version: v0.26.0
+      url: https://cloudnative-pg.github.io/charts
+      valuesFiles:
+        - "../../src/cnpg/values/values.yaml"
+   images:
+     - ghcr.io/cloudnative-pg/cloudnative-pg:1.27.0
