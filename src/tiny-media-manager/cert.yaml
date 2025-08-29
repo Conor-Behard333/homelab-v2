@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tmm-cert
+  namespace: ###ZARF_VAR_NAMESPACE###
+spec:
+  secretName: tmm-tls-secret
+  issuerRef:
+    name: clusterissuer
+    kind: ClusterIssuer
+  dnsNames:
+    - ###ZARF_VAR_HOST_NAME###

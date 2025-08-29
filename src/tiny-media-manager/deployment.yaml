@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tmm-deployment
+  namespace: ###ZARF_VAR_NAMESPACE###
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tmm-app
+  template:
+    metadata:
+      labels:
+        app: tmm-app
+    spec:
+      containers:
+      - name: tmm
+        image: tinymediamanager/tinymediamanager:5.0.7
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+          limits:
+            memory: "2048Mi"
+        ports:
+          - name: https
+            containerPort: 4000
+        env:
+        - name: USER_ID
+          value: "1026" # optional
+        - name: GROUP_ID
+          value: "100" # optional
+
+        volumeMounts:
+        - name: data
+          mountPath: /data
+        - name: qbit-mov-vol
+          mountPath: /media/qbit-mov-vol
+        - name: qbit-tv-vol
+          mountPath: /media/qbit-tv-vol
+        - name: video-tv-vol
+          mountPath: /media/video-tv-vol
+        - name: video-mov-vol
+          mountPath: /media/video-mov-vol
+
+      volumes:
+      - name: data
+        nfs:
+          server: nas.lan
+          path: /volume1/k3s/tiny-media-manager/data
+
+      - name: qbit-mov-vol
+        nfs:
+          server: nas.lan
+          path: /volume1/k3s/qbittorrent/downloads/Movies
+
+      - name: qbit-tv-vol
+        nfs:
+          server: nas.lan
+          path: /volume1/k3s/qbittorrent/downloads/TV Shows
+
+      - name: video-tv-vol
+        nfs:
+          server: nas.lan
+          path: "/volume1/video/Tv Shows"
+
+      - name: video-mov-vol
+        nfs:
+          server: nas.lan
+          path: /volume1/video/Movies
