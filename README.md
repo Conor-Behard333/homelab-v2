@@ -44,18 +44,32 @@
 - Description: Worker node for the k3s cluster
 
 ## Kubernetes (k3s)
-### Applications
-#### ArgoCD
-- Description: 
+### Alerting/Monitoring
+#### Ntfy
+#### Prometheus
+#### Grafana
+---
+### PKI/Ingress
 #### Cert Manager
-- Description:
+#### Nginx
 #### Cloudflare Tunnels
-- Description:
+---
+### Storage/Backup
+#### Cloudnative Postgres
+#### Harbor
+#### Velero
+#### Restic
+---
+### GPU
+#### Nvidia GPU Operator
+---
+### Identity Management
+#### keycloak
+---
+### Applications
 #### Coder
 - Description:
 #### Fresh RSS
-- Description:
-#### Harbor
 - Description:
 #### Homarr
 - Description:
@@ -64,10 +78,6 @@
 #### Jellyfin
 - Description:
 #### Jenkins
-- Description:
-#### Keycloak
-- Description:
-#### Nvidia GPU Operator
 - Description:
 #### Obsidian
 - Description:
