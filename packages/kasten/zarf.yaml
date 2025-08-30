@@ -2,13 +2,18 @@ kind: ZarfPackageConfig
 metadata:
   name: kasten
   description: deploy kasten
-
+variables:
+  - name: NAMESPACE
+    default: kasten-io
+  - name: HOST_NAME
+    default: kasten.lan
+    
 components:
  - name: kasten
    required: true
    charts:
     - name: k10
-      namespace: kasten
+      namespace: kasten-io
       version: 8.0.7
       url: https://charts.kasten.io/
       valuesFiles:
@@ -41,3 +46,12 @@ components:
       - gcr.io/kasten-images/datamover:8.0.7
       - gcr.io/kasten-images/frsession:8.0.7
       - gcr.io/kasten-images/metric-sidecar:8.0.7
+  
+ - name: kasten-ingress
+   required: true
+   manifests:
+    - name: kasten-ingress
+      namespace: kasten-io
+      files:
+          - ../../src/kasten/manifests/ingress.yaml
+          - ../../src/kasten/manifests/cert.yaml
