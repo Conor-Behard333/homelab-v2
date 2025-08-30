@@ -17,10 +17,10 @@ components:
     - name: tmm-deployment
       namespace: tmm
       files:
-          - ../../src/tiny-media-manager/ns.yaml
-          - ../../src/tiny-media-manager/deployment.yaml
-          - ../../src/tiny-media-manager/svc.yaml
-          - ../../src/tiny-media-manager/ingress.yaml
-          - ../../src/tiny-media-manager/cert.yaml
+          - ../../src/tiny-media-manager/manifests/ns.yaml
+          - ../../src/tiny-media-manager/manifests/deployment.yaml
+          - ../../src/tiny-media-manager/manifests/svc.yaml
+          - ../../src/tiny-media-manager/manifests/ingress.yaml
+          - ../../src/tiny-media-manager/manifests/cert.yaml
    images:
      - tinymediamanager/tinymediamanager:5.0.7

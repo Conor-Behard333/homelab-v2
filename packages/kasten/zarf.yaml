@@ -1,0 +1,43 @@
+kind: ZarfPackageConfig
+metadata:
+  name: kasten
+  description: deploy kasten
+
+components:
+ - name: kasten
+   required: true
+   charts:
+    - name: k10
+      namespace: kasten
+      version: 8.0.7
+      url: https://charts.kasten.io/
+      valuesFiles:
+        - "../../src/kasten/values/values.yaml"
+   images:
+      - gcr.io/kasten-images/aggregatedapis:8.0.7
+      - gcr.io/kasten-images/auth:8.0.7
+      - gcr.io/kasten-images/bloblifecyclemanager:8.0.7
+      - gcr.io/kasten-images/catalog:8.0.7
+      - gcr.io/kasten-images/configmap-reload:8.0.7
+      - gcr.io/kasten-images/controllermanager:8.0.7
+      - gcr.io/kasten-images/crypto:8.0.7
+      - gcr.io/kasten-images/dashboardbff:8.0.7
+      - gcr.io/kasten-images/events:8.0.7
+      - gcr.io/kasten-images/executor:8.0.7
+      - gcr.io/kasten-images/frontend:8.0.7
+      - gcr.io/kasten-images/garbagecollector:8.0.7
+      - gcr.io/kasten-images/gateway:8.0.7
+      - gcr.io/kasten-images/jobs:8.0.7
+      - gcr.io/kasten-images/kanister-tools:8.0.7
+      - gcr.io/kasten-images/kanister:8.0.7
+      - gcr.io/kasten-images/logging:8.0.7
+      - gcr.io/kasten-images/metering:8.0.7
+      - gcr.io/kasten-images/prometheus:8.0.7
+      - gcr.io/kasten-images/repositories:8.0.7
+      - gcr.io/kasten-images/state:8.0.7
+      - gcr.io/kasten-images/upgrade:8.0.7
+      - gcr.io/kasten-images/vbrintegrationapi:8.0.7
+      # Possible images - kasten
+      - gcr.io/kasten-images/datamover:8.0.7
+      - gcr.io/kasten-images/frsession:8.0.7
+      - gcr.io/kasten-images/metric-sidecar:8.0.7

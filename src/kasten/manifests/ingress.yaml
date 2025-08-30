@@ -1,11 +1,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: tmm-ingress
+  name: kasten-ingress
   namespace: ###ZARF_VAR_NAMESPACE###
   annotations:
-    kubernetes.io/ingress.className: traefik
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    kubernetes.io/ingress.className: nginx
 spec:
   rules:
   - host: ###ZARF_VAR_HOST_NAME###
@@ -15,10 +14,10 @@ spec:
         pathType: Prefix
         backend: 
           service:
-            name: tmm-svc
+            name: kasten-svc
             port:
               number: 80
   tls:
     - hosts:
       - ###ZARF_VAR_HOST_NAME###
-      secretName: tmm-tls-secret
+      secretName: kasten-tls-secret
