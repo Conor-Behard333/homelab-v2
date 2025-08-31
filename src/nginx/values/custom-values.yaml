@@ -1228,7 +1228,7 @@ tcp: {}
 # -- UDP service key-value pairs
 ## Ref: https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/exposing-tcp-udp-services.md
 ##
-udp: {}
+udp: {} 
 #  "53": "kube-system/kube-dns:53"
 
 # -- Prefix for TCP and UDP ports names in ingress controller service

@@ -1,0 +1,24 @@
+kind: ZarfPackageConfig
+metadata:
+  name: metallb
+  description: deploy nginx
+
+components:
+ - name: metallb
+   required: true
+   charts:
+    - name: metallb
+      namespace: metal-lb
+      version: v0.15.2
+      url: https://metallb.github.io/metallb
+      valuesFiles:
+        - "../../src/metallb/values/values.yaml"
+        
+ - name: metallb-ip-config
+   required: true
+   manifests:
+    - name: metallb-ip-config
+      namespace: metallb
+      files:
+          - ../../src/metallb/manifests/address-pool.yaml
+          - ../../src/metallb/manifests/l2-advert.yaml

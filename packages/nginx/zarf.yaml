@@ -12,7 +12,7 @@ components:
       version: 4.13.2
       url: https://kubernetes.github.io/ingress-nginx
       valuesFiles:
-        - "../../src/nginx/values/values.yaml"
+        - "../../src/nginx/values/custom-values.yaml"
    images:
       - registry.k8s.io/ingress-nginx/controller:v1.13.2@sha256:1f7eaeb01933e719c8a9f4acd8181e555e582330c7d50f24484fb64d2ba9b2ef
       - registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.6.2@sha256:050a34002d5bb4966849c880c56c91f5320372564245733b33d4b3461b4dbd24
