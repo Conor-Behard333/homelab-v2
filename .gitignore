@@ -2,4 +2,4 @@ ignore/
 builds
 .vscode
 .vscode/*
-./zarf-config.yaml
+zarf-config.yaml
