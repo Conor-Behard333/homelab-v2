@@ -1,0 +1,18 @@
+kind: ZarfPackageConfig
+metadata:
+  name: ntfy
+  description: Deploy ntfy
+variables:
+  - name: NTFY_CLOUDFLARE_TUNNEL_TOKEN
+components:
+  - name: ntfy
+    required: true
+    manifests:
+     - name: ntfy-deploy
+       namespace: ntfy
+       files:
+         - ../../src/ntfy/manifests/cert.yaml
+         - ../../src/ntfy/manifests/svc.yaml
+         - ../../src/ntfy/manifests/ingress.yaml
+         - ../../src/ntfy/manifests/deployment.yaml
+         - ../../src/ntfy/manifests/cloudflare-tunnel.yaml

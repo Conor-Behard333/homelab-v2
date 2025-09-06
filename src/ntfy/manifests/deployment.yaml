@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ntfy
+  namespace: ntfy
+spec:
+  selector:
+    matchLabels:
+      app: ntfy
+  template:
+    metadata:
+      labels:
+        app: ntfy
+    spec:
+      containers:
+      - name: ntfy
+        image: binwiederhier/ntfy
+        args: ["serve"]
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        env:
+          - name: NTFY_DEBUG # enable/disable debug
+            value: "true"
+          - name: NTFY_LOG_LEVEL # adjust log level
+            value: DEBUG
+          - name: NTFY_BASE_URL # add base url
+            value: "https://ntfy.lan"
+          - name: UPSTREAM_BASE_URL
+            value: "https://ntfy.sh"
+        ports:
+        - containerPort: 80
+          name: http
+        volumeMounts:
+        - name: config
+          mountPath: "/etc/ntfy"
+          readOnly: true
+      volumes:
+        - name: config
+          nfs:
+            server: nas.lan
+            path: /volume1/k3s/ntfy/config
