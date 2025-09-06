@@ -2,7 +2,10 @@ kind: ZarfPackageConfig
 metadata:
   name: external-dns
   description: deploy external-dns
-    
+variables:
+  - name: PIHOLE_PASSWORD
+  - name: UNIFI_API_KEY
+  - name: UNIFI_API_KEY_IRELAND
 components:
   - name: external-dns-pihole
     required: true

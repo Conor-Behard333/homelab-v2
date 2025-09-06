@@ -26,18 +26,49 @@ spec:
           - name: NTFY_LOG_LEVEL # adjust log level
             value: DEBUG
           - name: NTFY_BASE_URL # add base url
-            value: "https://ntfy.lan"
-          - name: UPSTREAM_BASE_URL
+            value: "https://ntfy.cjhome.uk"
+          - name: NTFY_UPSTREAM_BASE_URL
             value: "https://ntfy.sh"
+          - name: TZ
+            value: "Europe/London"
+          - name: NTFY_CACHE_FILE
+            value: "/var/lib/ntfy/cache.db"
+          - name: NTFY_AUTH_FILE
+            value: "/var/lib/ntfy/auth.db"
+          - name: NTFY_AUTH_DEFAULT_ACCESS
+            value: "deny-all"
+          - name: NTFY_ATTACHMENT_CACHE_DIR
+            value: "/var/lib/ntfy/attachments"
+          - name: NTFY_ENABLE_LOGIN
+            value: "true"
+          - name: NTFY_WEB_PUSH_FILE
+            value: "/var/cache/ntfy/webpush.db"
+          - name: NTFY_WEB_PUSH_EMAIL_ADDRESS
+            value: ###ZARF_VAR_NTFY_WEB_PUSH_EMAIL_ADDRESS###
+          - name: NTFY_WEB_PUSH_PUBLIC_KEY
+            value: ###ZARF_VAR_NTFY_WEB_PUSH_PUBLIC_KEY###
+          - name: NTFY_WEB_PUSH_PRIVATE_KEY
+            value: ###ZARF_VAR_NTFY_WEB_PUSH_PRIVATE_KEY###
         ports:
         - containerPort: 80
           name: http
         volumeMounts:
-        - name: config
+        - name: etc
           mountPath: "/etc/ntfy"
-          readOnly: true
+        - name: lib
+          mountPath: "/var/lib/ntfy"
+        - name: cache
+          mountPath: "/var/cache/ntfy"
       volumes:
-        - name: config
+        - name: etc
           nfs:
             server: nas.lan
             path: /volume1/k3s/ntfy/config
+        - name: lib
+          nfs:
+            server: nas.lan
+            path: /volume1/k3s/ntfy/lib
+        - name: cache
+          nfs:
+            server: nas.lan
+            path: /volume1/k3s/ntfy/cache

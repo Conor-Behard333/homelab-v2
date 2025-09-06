@@ -4,6 +4,9 @@ metadata:
   description: Deploy ntfy
 variables:
   - name: NTFY_CLOUDFLARE_TUNNEL_TOKEN
+  - name: NTFY_WEB_PUSH_PUBLIC_KEY
+  - name: NTFY_WEB_PUSH_PRIVATE_KEY
+  - name: NTFY_WEB_PUSH_EMAIL_ADDRESS
 components:
   - name: ntfy
     required: true
