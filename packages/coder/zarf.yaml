@@ -2,16 +2,24 @@ kind: ZarfPackageConfig
 metadata:
   name: coder
   description: Deploy coder
-components:
- - name: coder-db-creds
+components:        
+ - name: coder-database
    required: true
    manifests:
-     - name: database-creds
-       namespace: coder
-       files:
-         - ../../src/coder/manifests/coder-db-url.yaml
+    - name: coder-database
+      namespace: coder
+      files:
+        - ../../src/coder/manifests/password.yaml
+        - ../../src/coder/manifests/coder-db.yaml
+   
  - name: coder
    required: true
+   manifests:
+    - name: coder-extra
+      namespace: coder
+      files:
+        - ../../src/coder/manifests/cert.yaml
+        - ../../src/coder/manifests/ingress.yaml
    charts:
     - name: coder
       namespace: coder

@@ -14,11 +14,3 @@ components:
         - "../../src/cnpg/values/values.yaml"
    images:
      - ghcr.io/cloudnative-pg/cloudnative-pg:1.27.0
-
- - name: coder-cluster
-   required: true
-   manifests:
-     - name: coder-cluster
-       namespace: psql
-       files:
-         - ../../src/cnpg/databases/coder.yaml
