@@ -1,0 +1,21 @@
+kind: ZarfPackageConfig
+metadata:
+  name: coder
+  description: Deploy coder
+components:
+ - name: coder-db-creds
+   required: true
+   manifests:
+     - name: database-creds
+       namespace: coder
+       files:
+         - ../../src/coder/manifests/coder-db-url.yaml
+ - name: coder
+   required: true
+   charts:
+    - name: coder
+      namespace: coder
+      version: 2.25.2
+      url: https://helm.coder.com/v2
+      valuesFiles:
+        - "../../src/coder/values/values.yaml"

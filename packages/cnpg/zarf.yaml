@@ -1,10 +1,9 @@
 kind: ZarfPackageConfig
 metadata:
   name: cloud-native-postgres
-  description: deploy cnpg
-
+  description: Deploy cnpg
 components:
- - name: cnpg
+ - name: cnpg-operator
    required: true
    charts:
     - name: cloudnative-pg
@@ -15,3 +14,11 @@ components:
         - "../../src/cnpg/values/values.yaml"
    images:
      - ghcr.io/cloudnative-pg/cloudnative-pg:1.27.0
+
+ - name: coder-cluster
+   required: true
+   manifests:
+     - name: coder-cluster
+       namespace: psql
+       files:
+         - ../../src/cnpg/databases/coder.yaml
