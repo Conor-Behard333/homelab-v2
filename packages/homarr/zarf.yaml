@@ -22,6 +22,4 @@ components:
         - ../../src/homarr/manifests/service.yaml
         - ../../src/homarr/manifests/deployment.yaml
    images:
-      - ghcr.io/coder/coder:v2.25.2
-      # Cosign artifacts for images - coder
-      - ghcr.io/coder/coder:sha256-62bc023a5e8f26974bda31a9678136427372f753c83764e87fd685426b6482ea.att
+      - ghcr.io/homarr-labs/homarr:v1.36.1
