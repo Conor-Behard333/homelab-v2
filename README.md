@@ -30,18 +30,18 @@
 ## Proxmox
 ### Applications
 #### Pihole
-- Description: The Pi-hole is a DNS sinkhole that protects your devices from unwanted content, without installing any client-side software.
+ The Pi-hole is a DNS sinkhole that protects your devices from unwanted content, without installing any client-side software.
 - Docs: https://docs.pi-hole.net/
 #### Home Assistant
-- Description: Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts.
+ Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts.
 - Docs: https://www.home-assistant.io/docs/
 #### RustDesk
-- Description: RustDesk is a full-featured open source remote control alternative for self-hosting and security with minimal configuration.
+ RustDesk is a full-featured open source remote control alternative for self-hosting and security with minimal configuration.
 - Docs: https://rustdesk.com/docs/en/self-host/
 #### K3S Control Node
-- Description: Control node for the k3s cluster
+ Control node for the k3s cluster
 #### K3S Worker Node
-- Description: Worker node for the k3s cluster
+ Worker node for the k3s cluster
 
 ## Kubernetes (k3s)
 ### Alerting/Monitoring
@@ -49,9 +49,11 @@
 #### Prometheus
 #### Grafana
 ---
-### PKI/Ingress
+### Networking
 #### Cert Manager
-#### Nginx
+#### Nginx Ingress
+#### External DNS
+#### Metallb
 #### Cloudflare Tunnels
 ---
 ### Storage/Backup
@@ -68,32 +70,17 @@
 ---
 ### Applications
 #### Coder
-- Description:
 #### Fresh RSS
-- Description:
 #### Homarr
-- Description:
 #### Immich
-- Description:
 #### Jellyfin
-- Description:
 #### Jenkins
-- Description:
 #### Obsidian
-- Description:
 #### Ollama
-- Description:
 #### Open Web UI
-- Description:
 #### Satisfactory Server
-- Description:
 #### Spotify Clean Up App
-- Description:
 #### Tiny Media Manager
-- Description:
 #### Vault
-- Description:
 #### Vault Warden
-- Description:
 #### Vault Secrets Operator
-- Description:

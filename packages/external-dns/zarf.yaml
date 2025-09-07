@@ -1,0 +1,53 @@
+kind: ZarfPackageConfig
+metadata:
+  name: external-dns
+  description: deploy external-dns
+variables:
+  - name: PIHOLE_PASSWORD
+  - name: UNIFI_API_KEY
+  - name: UNIFI_API_KEY_IRELAND
+components:
+  - name: external-dns-pihole
+    required: true
+    charts:
+      - name: external-dns
+        namespace: external-dns-pihole
+        version: 1.18.0
+        url: https://kubernetes-sigs.github.io/external-dns/
+        valuesFiles:
+          - "../../src/external-dns/values/values-pihole.yaml"
+    images:
+      - ghcr.io/tarantini-io/external-dns-pihole-webhook:v1.0.0
+      - registry.k8s.io/external-dns/external-dns:v0.18.0
+      # Cosign artifacts for images - external-dns-pihole
+      - registry.k8s.io/external-dns/external-dns:sha256-f90738b35be265d50141d5c21e6f6049c3da7cd761682c40214117a2951b80bc.sig
+
+  - name: external-dns-unifi
+    required: true
+    charts:
+      - name: external-dns
+        namespace: external-dns-unifi
+        version: 1.18.0
+        url: https://kubernetes-sigs.github.io/external-dns/
+        valuesFiles:
+          - "../../src/external-dns/values/values-unifi.yaml"
+    images:
+      - ghcr.io/kashalls/external-dns-unifi-webhook:v0.6.2
+      - registry.k8s.io/external-dns/external-dns:v0.18.0
+      # Cosign artifacts for images - external-dns-unifi
+      - registry.k8s.io/external-dns/external-dns:sha256-f90738b35be265d50141d5c21e6f6049c3da7cd761682c40214117a2951b80bc.sig
+  
+  - name: external-dns-unifi-ireland
+    required: true
+    charts:
+      - name: external-dns
+        namespace: external-dns-unifi-ireland
+        version: 1.18.0
+        url: https://kubernetes-sigs.github.io/external-dns/
+        valuesFiles:
+          - "../../src/external-dns/values/values-unifi-ireland.yaml"
+    images:
+      - ghcr.io/kashalls/external-dns-unifi-webhook:v0.6.2
+      - registry.k8s.io/external-dns/external-dns:v0.18.0
+      # Cosign artifacts for images - external-dns-unifi
+      - registry.k8s.io/external-dns/external-dns:sha256-f90738b35be265d50141d5c21e6f6049c3da7cd761682c40214117a2951b80bc.sig

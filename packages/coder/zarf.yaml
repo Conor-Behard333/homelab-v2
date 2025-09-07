@@ -1,0 +1,33 @@
+kind: ZarfPackageConfig
+metadata:
+  name: coder
+  description: Deploy coder
+components:        
+ - name: coder-database
+   required: true
+   manifests:
+    - name: coder-database
+      namespace: coder
+      files:
+        - ../../src/coder/manifests/password.yaml
+        - ../../src/coder/manifests/coder-db.yaml
+   
+ - name: coder
+   required: true
+   manifests:
+    - name: coder-extra
+      namespace: coder
+      files:
+        - ../../src/coder/manifests/cert.yaml
+        - ../../src/coder/manifests/ingress.yaml
+   charts:
+    - name: coder
+      namespace: coder
+      version: 2.25.2
+      url: https://helm.coder.com/v2
+      valuesFiles:
+        - "../../src/coder/values/values.yaml"
+   images:
+      - ghcr.io/coder/coder:v2.25.2
+      # Cosign artifacts for images - coder
+      - ghcr.io/coder/coder:sha256-62bc023a5e8f26974bda31a9678136427372f753c83764e87fd685426b6482ea.att

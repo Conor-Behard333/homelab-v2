@@ -1,0 +1,20 @@
+kind: ZarfPackageConfig
+metadata:
+  name: external-secrets
+  description: deploy external-secrets
+    
+components:
+  - name: external-secrets
+    required: true
+    charts:
+      - name: external-secrets
+        namespace: external-secrets
+        version: 0.19.2
+        url: https://charts.external-secrets.io
+        valuesFiles:
+          - "../../src/external-secrets/values/values.yaml"
+    images:
+      - oci.external-secrets.io/external-secrets/external-secrets:v0.19.2
+      # Cosign artifacts for images - external-secrets
+      - oci.external-secrets.io/external-secrets/external-secrets:sha256-c5617d6e8044dad923f66ff8b7f6736905fd0bb71657b40ad39b62f672ff69ea.sig
+      - oci.external-secrets.io/external-secrets/external-secrets:sha256-c5617d6e8044dad923f66ff8b7f6736905fd0bb71657b40ad39b62f672ff69ea.att

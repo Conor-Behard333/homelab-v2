@@ -1,0 +1,16 @@
+init:
+    git:
+        push_username: zarf-git-user
+    registry:
+        push_username: zarf-push
+log_format: console
+log_level: info
+package:
+    create:
+        skip-sbom: true
+        output: builds
+    deploy:
+        retries: 3
+        timeout: 15m0s
+    oci_concurrency: 6
+zarf_cache: ~/.zarf-cache

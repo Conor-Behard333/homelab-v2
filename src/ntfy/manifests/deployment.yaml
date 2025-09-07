@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ntfy
+  namespace: ntfy
+spec:
+  selector:
+    matchLabels:
+      app: ntfy
+  template:
+    metadata:
+      labels:
+        app: ntfy
+    spec:
+      containers:
+      - name: ntfy
+        image: binwiederhier/ntfy
+        args: ["serve"]
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        env:
+          - name: NTFY_DEBUG # enable/disable debug
+            value: "true"
+          - name: NTFY_LOG_LEVEL # adjust log level
+            value: DEBUG
+          - name: NTFY_BASE_URL # add base url
+            value: "https://ntfy.cjhome.uk"
+          - name: NTFY_UPSTREAM_BASE_URL
+            value: "https://ntfy.sh"
+          - name: TZ
+            value: "Europe/London"
+          - name: NTFY_CACHE_FILE
+            value: "/var/lib/ntfy/cache.db"
+          - name: NTFY_AUTH_FILE
+            value: "/var/lib/ntfy/auth.db"
+          - name: NTFY_AUTH_DEFAULT_ACCESS
+            value: "deny-all"
+          - name: NTFY_ATTACHMENT_CACHE_DIR
+            value: "/var/lib/ntfy/attachments"
+          - name: NTFY_ENABLE_LOGIN
+            value: "true"
+          - name: NTFY_WEB_PUSH_FILE
+            value: "/var/cache/ntfy/webpush.db"
+          - name: NTFY_WEB_PUSH_EMAIL_ADDRESS
+            value: ###ZARF_VAR_NTFY_WEB_PUSH_EMAIL_ADDRESS###
+          - name: NTFY_WEB_PUSH_PUBLIC_KEY
+            value: ###ZARF_VAR_NTFY_WEB_PUSH_PUBLIC_KEY###
+          - name: NTFY_WEB_PUSH_PRIVATE_KEY
+            value: ###ZARF_VAR_NTFY_WEB_PUSH_PRIVATE_KEY###
+        ports:
+        - containerPort: 80
+          name: http
+        volumeMounts:
+        - name: etc
+          mountPath: "/etc/ntfy"
+        - name: lib
+          mountPath: "/var/lib/ntfy"
+        - name: cache
+          mountPath: "/var/cache/ntfy"
+      volumes:
+        - name: etc
+          nfs:
+            server: nas.lan
+            path: /volume1/k3s/ntfy/config
+        - name: lib
+          nfs:
+            server: nas.lan
+            path: /volume1/k3s/ntfy/lib
+        - name: cache
+          nfs:
+            server: nas.lan
+            path: /volume1/k3s/ntfy/cache
