@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jellyfin-ingress
+  annotations:
+    kubernetes.io/ingress.className: nginx
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: jellyfin.lan
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend: 
+          service:
+            name: jellyfin-svc
+            port:
+              number: 80
+  tls:
+    - hosts:
+      - jellyfin.lan
+      secretName: jellyfin-tls-secret

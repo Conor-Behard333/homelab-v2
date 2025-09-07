@@ -1,0 +1,23 @@
+kind: ZarfPackageConfig
+metadata:
+  name: jellyfin
+  description: Deploy jellyfin
+variables:
+  - name: JELLYFIN_CLOUDFLARE_TUNNEL_TOKEN
+components:          
+ - name: jellyfin
+   required: true
+   manifests:
+    - name: jellyfin-deploy
+      namespace: jellyfin
+      files:
+        - ../../src/jellyfin/manifests/cert.yaml
+        - ../../src/jellyfin/manifests/ingress.yaml
+        - ../../src/jellyfin/manifests/service.yaml
+        - ../../src/jellyfin/manifests/pv.yaml
+        - ../../src/jellyfin/manifests/pvc.yaml
+        - ../../src/jellyfin/manifests/cloudflare-tunnel.yaml
+        - ../../src/jellyfin/manifests/deployment.yaml
+   images:
+      - cloudflare/cloudflared:latest
+      - jellyfin/jellyfin:10.10.7

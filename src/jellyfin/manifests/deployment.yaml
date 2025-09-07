@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jellyfin-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jellyfin-app
+  template:
+    metadata:
+      labels:
+        app: jellyfin-app
+    spec:
+      runtimeClassName: nvidia
+      containers:
+      - name: jellyfin-app
+        env:
+          - name: JELLYFIN_DATA_DIR
+            value: "/config" 
+          - name: JELLYFIN_CONFIG_DIR
+            value: "/config/config"
+          - name: JELLYFIN_LOG_DIR
+            value: "/config/log"
+          - name: JELLYFIN_CACHE_DIR
+            value: "/config/cache"
+          - name: DOTNET_SYSTEM_IO_DISABLEFILELOCKING
+            value: "1"
+        image: jellyfin/jellyfin:10.10.7
+        resources:
+          limits:
+            nvidia.com/gpu: 1 # requesting 1 GPU
+        securityContext:
+            privileged: true
+        ports:
+        - containerPort: 8096
+          protocol: TCP
+        - containerPort: 8920
+          protocol: TCP
+        volumeMounts:
+        - name: volume-config
+          mountPath: /config
+        - name: dri
+          mountPath: /dev/dri
+        - name: qbit-mov-vol
+          mountPath: /qbit-movies
+        - name: qbit-tv-vol
+          mountPath: /qbit-tv
+        - name: qbit-books-vol
+          mountPath: /qbit-books
+        - name: video-tv-vol
+          mountPath: /video-tv
+        - name: video-mov-vol
+          mountPath: /video-mov
+      volumes:
+      - name: volume-config
+        persistentVolumeClaim:
+          claimName: jellyfin-config-pvc
+
+      - name: qbit-mov-vol
+        nfs:
+          server: nas.lan
+          path: /volume1/k3s/qbittorrent/downloads/Movies
+
+      - name: qbit-tv-vol
+        nfs:
+          server: nas.lan
+          path: /volume1/k3s/qbittorrent/downloads/TV Shows
+
+      - name: qbit-books-vol
+        nfs:
+          server: nas.lan
+          path: /volume1/k3s/qbittorrent/downloads/Books
+
+      - name: video-tv-vol
+        nfs:
+          server: nas.lan
+          path: "/volume1/video/Tv Shows"
+
+      - name: video-mov-vol
+        nfs:
+          server: nas.lan
+          path: /volume1/video/Movies
+
+      - name: dri
+        hostPath:
+          path: /dev/dri 
+
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - k3s-worker-3
