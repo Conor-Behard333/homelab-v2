@@ -48,10 +48,6 @@ spec:
           mountPath: /qbit-tv
         - name: qbit-books-vol
           mountPath: /qbit-books
-        - name: video-tv-vol
-          mountPath: /video-tv
-        - name: video-mov-vol
-          mountPath: /video-mov
       volumes:
       - name: volume-config
         persistentVolumeClaim:
@@ -71,16 +67,6 @@ spec:
         nfs:
           server: nas.lan
           path: /volume1/k3s/qbittorrent/downloads/Books
-
-      - name: video-tv-vol
-        nfs:
-          server: nas.lan
-          path: "/volume1/video/Tv Shows"
-
-      - name: video-mov-vol
-        nfs:
-          server: nas.lan
-          path: /volume1/video/Movies
 
       - name: dri
         hostPath:
