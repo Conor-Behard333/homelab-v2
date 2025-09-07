@@ -1,0 +1,58 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: keycloak
+  name: keycloak
+  labels:
+    app: keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      volumes:
+      - name: providers
+        nfs:
+          server: nas.lan
+          path: /volume1/k3s/keycloak/providers
+      - name: tls
+        secret:
+          secretName: keycloak-tls-secret
+      initContainers:
+      - name: volume-mount-hack
+        image: busybox
+        command: ["sh", "-c", "chown -R 1000:0 /opt/keycloak/providers"]
+        volumeMounts:
+        - name: providers
+          mountPath: /opt/keycloak/providers
+      containers:
+        - name: keycloak
+          image: quay.io/keycloak/keycloak:26.1.0
+          args: ["start"]
+          envFrom:
+          - secretRef:
+              name: keycloak-secrets
+          env:
+            - name: KC_HOSTNAME_STRICT
+              value: "true"
+            - name: KC_HTTP_ENABLED
+              value: "true"
+            - name: KC_HTTPS_ENABLED
+              value: "true"
+            - name: DEBUG
+              value: "true"
+          volumeMounts:
+          - name: tls
+            mountPath: /opt/keycloak/tls
+          ports:
+            - name: https
+              containerPort: 8443
+            - name: http
+              containerPort: 8080
+      

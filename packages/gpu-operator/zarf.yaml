@@ -1,0 +1,20 @@
+kind: ZarfPackageConfig
+metadata:
+  name: gpu-operator
+  description: Deploy gpu-operator
+components:        
+  - name: gpu-operator
+    required: true
+    manifests:
+     - name: gpu-operator-time-slice
+       namespace: gpu-operator
+       files:
+        - ../../src/gpu-operator/manifests/time-slice-gpu.yaml
+    charts:
+      - name: gpu-operator
+        namespace: gpu-operator
+        version: v25.3.1
+        url: https://helm.ngc.nvidia.com/nvidia
+        repoName: nvidia
+        valuesFiles:
+          - "../../src/gpu-operator/values/values.yaml"
