@@ -3,6 +3,7 @@ metadata:
   name: ntfy
   description: Deploy ntfy
 variables:
+  - name: NTFY_BASE_URL
   - name: NTFY_CLOUDFLARE_TUNNEL_TOKEN
   - name: NTFY_WEB_PUSH_PUBLIC_KEY
   - name: NTFY_WEB_PUSH_PRIVATE_KEY
