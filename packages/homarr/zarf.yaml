@@ -1,0 +1,27 @@
+kind: ZarfPackageConfig
+metadata:
+  name: homarr
+  description: Deploy Homarr
+variables:
+  - name: HOMARR_SECRET_ENCRYPTION_KEY
+  - name: HOMARR_PASSWORD
+  - name: HOMARR_AUTH_OIDC_CLIENT_ID
+  - name: HOMARR_AUTH_OIDC_CLIENT_NAME
+  - name: HOMARR_AUTH_OIDC_CLIENT_SECRET
+  - name: HOMARR_AUTH_OIDC_ISSUER
+  - name: HOMARR_AUTH_PROVIDERS
+components:          
+ - name: homarr
+   required: true
+   manifests:
+    - name: homarr-deploy
+      namespace: homarr
+      files:
+        - ../../src/homarr/manifests/cert.yaml
+        - ../../src/homarr/manifests/ingress.yaml
+        - ../../src/homarr/manifests/service.yaml
+        - ../../src/homarr/manifests/deployment.yaml
+   images:
+      - ghcr.io/coder/coder:v2.25.2
+      # Cosign artifacts for images - coder
+      - ghcr.io/coder/coder:sha256-62bc023a5e8f26974bda31a9678136427372f753c83764e87fd685426b6482ea.att

@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: homarr
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homarr-dashboard
+  namespace: homarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homarr-dashboard
+  template:
+    metadata:
+      labels:
+        app: homarr-dashboard
+    spec:
+      containers:
+        - name: homarr-dashboard
+          image: ghcr.io/homarr-labs/homarr:v1.27.0
+          resources:
+            requests:
+              memory: "64Mi"
+            limits:
+              memory: "1024Mi"
+          ports:
+            - name: http
+              containerPort: 7575
+          env:
+            - name: SECRET_ENCRYPTION_KEY
+              value: "###ZARF_VAR_HOMARR_SECRET_ENCRYPTION_KEY###"
+            - name: NODE_TLS_REJECT_UNAUTHORIZED
+              value: "0"
+            - name: PASSWORD
+              value: "###ZARF_VAR_HOMARR_PASSWORD###"
+            - name: AUTH_OIDC_CLIENT_ID
+              value: "###ZARF_VAR_HOMARR_AUTH_OIDC_CLIENT_ID###"
+            - name: AUTH_OIDC_CLIENT_NAME
+              value: "###ZARF_VAR_HOMARR_AUTH_OIDC_CLIENT_NAME###"
+            - name: AUTH_OIDC_CLIENT_SECRET
+              value: "###ZARF_VAR_HOMARR_AUTH_OIDC_CLIENT_SECRET###"
+            - name: AUTH_OIDC_ISSUER
+              value: "###ZARF_VAR_HOMARR_AUTH_OIDC_ISSUER###"
+            - name: AUTH_PROVIDERS
+              value: "###ZARF_VAR_HOMARR_AUTH_PROVIDERS###"
+          volumeMounts:
+            - name: volume
+              mountPath: /appdata
+      volumes:
+        - name: volume
+          nfs:
+            server: nas.lan
+            path: /volume1/k3s/homarr
+
