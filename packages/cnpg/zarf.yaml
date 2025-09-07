@@ -13,4 +13,6 @@ components:
       valuesFiles:
         - "../../src/cnpg/values/values.yaml"
    images:
-     - ghcr.io/cloudnative-pg/cloudnative-pg:1.27.0
+      - ghcr.io/cloudnative-pg/cloudnative-pg:1.27.0
+      # Cosign artifacts for images - cnpg-operator
+      - ghcr.io/cloudnative-pg/cloudnative-pg:sha256-9e5633b36f1f3ff0bb28b434ce51c95fbb8428a4ab47bc738ea403eb09dbf945.sig

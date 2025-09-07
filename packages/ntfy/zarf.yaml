@@ -19,3 +19,6 @@ components:
          - ../../src/ntfy/manifests/ingress.yaml
          - ../../src/ntfy/manifests/deployment.yaml
          - ../../src/ntfy/manifests/cloudflare-tunnel.yaml
+    images:
+      - binwiederhier/ntfy
+      - cloudflare/cloudflared:latest
