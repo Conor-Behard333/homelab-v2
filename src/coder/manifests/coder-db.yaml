@@ -11,5 +11,5 @@ spec:
       secret:
         name: coder-db-password
   storage:
-    storageClass: nfs-main
+    storageClass: nfs-truenas-retain
     size: 10Gi

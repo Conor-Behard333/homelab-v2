@@ -15,8 +15,8 @@ spec:
       volumes:
       - name: postgres-data
         nfs:
-          server: nas.lan
-          path: /volume1/k3s/keycloak/data
+          server: truenas.lan
+          path: /mnt/media-pool/k3s/keycloak/data
       containers:
         - name: postgres-container
           image: postgres:16.2

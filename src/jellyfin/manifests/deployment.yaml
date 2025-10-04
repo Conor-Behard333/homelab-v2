@@ -55,18 +55,18 @@ spec:
 
       - name: qbit-mov-vol
         nfs:
-          server: nas.lan
-          path: /volume1/k3s/qbittorrent/downloads/Movies
+          server: truenas.lan
+          path: /mnt/media-pool/k3s/qbittorrent/downloads/Movies
 
       - name: qbit-tv-vol
         nfs:
-          server: nas.lan
-          path: /volume1/k3s/qbittorrent/downloads/TV Shows
+          server: truenas.lan
+          path: "/mnt/media-pool/k3s/qbittorrent/downloads/TV Shows"
 
       - name: qbit-books-vol
         nfs:
-          server: nas.lan
-          path: /volume1/k3s/qbittorrent/downloads/Books
+          server: truenas.lan
+          path: /mnt/media-pool/k3s/qbittorrent/downloads/Books
 
       - name: dri
         hostPath:

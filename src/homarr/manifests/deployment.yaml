@@ -46,6 +46,6 @@ spec:
       volumes:
         - name: volume
           nfs:
-            server: nas.lan
-            path: /volume1/k3s/homarr
+            server: truenas.lan
+            path: /mnt/media-pool/k3s/homarr
 
