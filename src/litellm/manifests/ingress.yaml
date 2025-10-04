@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: litellm-ingress
+  namespace: litellm
+  annotations: 
+    kubernetes.io/ingress.className: nginx
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: litellm.lan
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend: 
+          service:
+            name: litellm-service
+            port:
+              number: 443
+  tls:
+    - hosts:
+      - litellm.lan
+      secretName: litellm-tls-secret
