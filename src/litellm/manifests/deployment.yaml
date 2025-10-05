@@ -30,6 +30,8 @@ spec:
             value: ###ZARF_VAR_LITELLM_MASTER_KEY###
           - name: LITELLM_SALT_KEY
             value: ###ZARF_VAR_LITELLM_SALT_KEY###
+          - name: STORE_MODEL_IN_DB
+            value: "true"
         envFrom:
         - secretRef:
             name: litellm-db-password
