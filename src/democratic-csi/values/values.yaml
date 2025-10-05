@@ -24,11 +24,11 @@ driver:
       protocol: http
       host: 10.0.0.63
       port: 80
-      apiKey: 1-dKaC2hJmoKsxmm3e6p6Rz1c8sEvE5ZUXBJlUlm58gvzLjBFxFYyG6k5tv6vP6eaR
+      apiKey: ###ZARF_VAR_TRUENAS_API_KEY###
       allowInsecure: true
     zfs:
       datasetParentName: media-pool/k3s/pvs
-      detachedSnapshotsDatasetParentName: media-pool/k8s/snapshots
+      detachedSnapshotsDatasetParentName: media-pool/k3s/snapshots
       datasetEnableQuotas: true
       datasetEnableReservation: false
       datasetPermissionsMode: "0777"
