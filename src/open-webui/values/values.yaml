@@ -30,6 +30,6 @@ sso:
     enabled: true
     clientId: ###ZARF_VAR_OPEN_WEBUI_CLIENT_ID###
     clientSecret: ###ZARF_VAR_OPEN_WEBUI_CLIENT_SECRET###
-    providerUrl: ####ZARF_VAR_OPEN_WEBUI_PROVIDER_URL###
+    providerUrl: ###ZARF_VAR_OPEN_WEBUI_PROVIDER_URL###
     providerName: ###ZARF_VAR_OPEN_WEBUI_PROVIDER_NAME###
     scopes: ###ZARF_VAR_OPEN_WEBUI_SCOPES###
