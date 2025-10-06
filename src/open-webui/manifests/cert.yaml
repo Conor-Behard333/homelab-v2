@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: open-webui-cert
+spec:
+  secretName: open-webui-tls-secret
+  issuerRef:
+    name: clusterissuer
+    kind: ClusterIssuer
+  dnsNames:
+    - ai.lan
