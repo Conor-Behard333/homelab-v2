@@ -22,6 +22,10 @@ persistence:
   size: 100Gi
   storageClass: "nfs"
 
+extraEnvVars:
+  - name: ENABLE_LOGIN_FORM
+    value: "false"
+
 sso: 
   enabled: true
   enableSignup: true
