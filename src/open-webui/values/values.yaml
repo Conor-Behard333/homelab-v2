@@ -24,7 +24,7 @@ persistence:
 
 sso: 
   enabled: true
-  enableSignup: false
+  enableSignup: true
   mergeAccountsByEmail: true
   oidc:
     enabled: true
