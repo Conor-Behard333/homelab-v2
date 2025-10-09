@@ -22,4 +22,4 @@ components:
         - ../../src/homarr/manifests/service.yaml
         - ../../src/homarr/manifests/deployment.yaml
    images:
-      - ghcr.io/homarr-labs/homarr:v1.36.1
+      - ghcr.io/homarr-labs/homarr:v1.40.0
