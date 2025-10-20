@@ -26,7 +26,7 @@ spec:
             value: "/config/cache"
           - name: DOTNET_SYSTEM_IO_DISABLEFILELOCKING
             value: "1"
-        image: jellyfin/jellyfin:10.10.7
+        image: jellyfin/jellyfin:10.11.0
         resources:
           limits:
             nvidia.com/gpu: 1 # requesting 1 GPU
