@@ -1,0 +1,22 @@
+kind: ZarfPackageConfig
+metadata:
+  name: keycloak
+  description: Deploy keycloak
+variables:
+  - name: KEYCLOAK_CLOUDFLARE_TUNNEL_TOKEN
+components:          
+ - name: keycloak
+   required: true
+   manifests:
+    - name: keycloak-deploy
+      namespace: keycloak
+      files:
+        - ../../src/keycloak/manifests/cert.yaml
+        - ../../src/keycloak/manifests/ingress.yaml
+        - ../../src/keycloak/manifests/database.yaml
+        - ../../src/keycloak/manifests/service.yaml
+        - ../../src/keycloak/manifests/cloudflare-tunnel.yaml
+        - ../../src/keycloak/manifests/deployment.yaml
+   images:
+      - cloudflare/cloudflared:latest
+      - quay.io/keycloak/keycloak:26.1.0

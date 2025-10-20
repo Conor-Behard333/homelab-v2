@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cloudflared
+  name: jellyfin-cloudflared-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      pod: cloudflared
+  template:
+    metadata:
+      labels:
+        pod: cloudflared
+    spec:
+      containers:
+      - command:
+        - cloudflared
+        - tunnel
+        # In a k8s environment, the metrics server needs to listen outside the pod it runs on.
+        # The address 0.0.0.0:2000 allows any pod in the namespace.
+        - --metrics
+        - 0.0.0.0:2000
+        - run
+        args:
+        - --token
+        - ###ZARF_VAR_JELLYFIN_CLOUDFLARE_TUNNEL_TOKEN###
+        image: cloudflare/cloudflared:latest
+        name: cloudflared-deployment
+        livenessProbe:
+          httpGet:
+            path: /ready
+            port: 2000
+          failureThreshold: 1
+          initialDelaySeconds: 10
+          periodSeconds: 10
+      dnsPolicy: ClusterFirst

@@ -1,0 +1,36 @@
+kind: ZarfPackageConfig
+metadata:
+  name: open-webui
+  description: deploy open-webui
+variables:
+  - name: OPEN_WEBUI_CLOUDFLARE_TUNNEL_TOKEN
+  - name: OPEN_WEBUI_CLIENT_SECRET
+  - name: OPEN_WEBUI_PROVIDER_URL
+  - name: OPEN_WEBUI_PROVIDER_NAME
+  - name: OPEN_WEBUI_SCOPES
+components:
+  - name: open-webui-cert
+    required: true
+    manifests:
+      - name: open-webui-cert
+        namespace: open-webui
+        files:
+          - ../../src/open-webui/manifests/cert.yaml
+          
+  - name: open-webui-cloudflare-tunnel
+    required: true
+    manifests:
+      - name: open-webui-cloudflare-tunnel
+        namespace: open-webui
+        files:
+          - ../../src/open-webui/manifests/cloudflare-tunnel.yaml
+
+  - name: open-webui
+    required: true
+    charts:
+      - name: open-webui
+        namespace: open-webui
+        version: 8.9.0
+        url: https://helm.openwebui.com/
+        valuesFiles:
+          - "../../src/open-webui/values/values.yaml"

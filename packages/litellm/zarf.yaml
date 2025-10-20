@@ -1,0 +1,19 @@
+kind: ZarfPackageConfig
+metadata:
+  name: litellm
+  description: Deploy litellm
+components:
+  - name: litellm
+    required: true
+    manifests:
+     - name: litellm-deploy
+       namespace: litellm
+       files:
+         - ../../src/litellm/manifests/cert.yaml
+         - ../../src/litellm/manifests/svc.yaml
+         - ../../src/litellm/manifests/ingress.yaml
+         - ../../src/litellm/manifests/db.yaml
+         - ../../src/litellm/manifests/password.yaml
+         - ../../src/litellm/manifests/deployment.yaml
+    images:
+      - ghcr.io/berriai/litellm:v1.77.3-stable

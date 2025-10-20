@@ -1,0 +1,21 @@
+kind: ZarfPackageConfig
+metadata:
+  name: gatus
+  description: Deploy gatus
+variables:
+  - name: GATUS_CONFIG
+    autoIndent: true
+components:          
+ - name: gatus
+   required: true
+   manifests:
+    - name: gatus-deploy
+      namespace: gatus
+      files:
+        - ../../src/gatus/manifests/cert.yaml
+        - ../../src/gatus/manifests/config.yaml
+        - ../../src/gatus/manifests/ingress.yaml
+        - ../../src/gatus/manifests/service.yaml
+        - ../../src/gatus/manifests/deployment.yaml
+   images:
+      - docker.io/twinproduction/gatus:v5.23.2

@@ -62,13 +62,13 @@ spec:
       volumes:
         - name: etc
           nfs:
-            server: nas.lan
-            path: /volume1/k3s/ntfy/config
+            server: truenas.lan
+            path: /mnt/media-pool/k3s/ntfy/config
         - name: lib
           nfs:
-            server: nas.lan
-            path: /volume1/k3s/ntfy/lib
+            server: truenas.lan
+            path: /mnt/media-pool/k3s/ntfy/lib
         - name: cache
           nfs:
-            server: nas.lan
-            path: /volume1/k3s/ntfy/cache
+            server: truenas.lan
+            path: /mnt/media-pool/k3s/ntfy/cache

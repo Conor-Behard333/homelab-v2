@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gatus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gatus
+  template:
+    metadata:
+      name: gatus
+      namespace: gatus
+      labels:
+        app: gatus
+    spec:
+      containers:
+        - image: twinproduction/gatus:v5.23.2
+          imagePullPolicy: IfNotPresent
+          name: gatus
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 250m
+              memory: 100M
+            requests:
+              cpu: 50m
+              memory: 30M
+          volumeMounts:
+            - mountPath: /config
+              name: gatus-config
+      volumes:
+        - configMap:
+            name: gatus
+          name: gatus-config
+---

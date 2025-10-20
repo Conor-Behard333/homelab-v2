@@ -1,0 +1,26 @@
+daemonsets:
+  tolerations:
+  - effect: NoSchedule
+    key: nvidia.com/gpu
+    operator: Exists
+devicePlugin:
+  config:
+    name: time-slicing-config-all
+operator:
+  defaultRuntime: containerd
+toolkit:
+  enabled: true
+  env:
+  - name: CONTAINERD_CONFIG
+    value: /var/lib/rancher/k3s/agent/etc/containerd/config.toml
+  - name: CONTAINERD_SOCKET
+    value: /run/k3s/containerd/containerd.sock
+  - name: CONTAINERD_RUNTIME_CLASS
+    value: nvidia
+  - name: CONTAINERD_SET_AS_DEFAULT
+    value: "false"
+validator:
+  driver:
+    env:
+    - name: DISABLE_DEV_CHAR_SYMLINK_CREATION
+      value: "true"

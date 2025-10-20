@@ -1,0 +1,49 @@
+csiDriver:
+  name: "nfs"
+storageClasses:
+- name: nfs
+  defaultClass: false
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate
+  allowVolumeExpansion: true
+  parameters:
+    fsType: nfs
+    detachedVolumesFromSnapshots: "false"
+  mountOptions:
+  - noatime
+  - nfsvers=3
+volumeSnapshotClasses:
+- name: nfs
+  parameters:
+    detachedSnapshots: "true"
+driver:
+  config:
+    driver: freenas-api-nfs
+    instance_id:
+    httpConnection:
+      protocol: http
+      host: 10.0.0.63
+      port: 80
+      apiKey: ###ZARF_VAR_TRUENAS_API_KEY###
+      allowInsecure: true
+    zfs:
+      datasetParentName: media-pool/k3s/pvs
+      detachedSnapshotsDatasetParentName: media-pool/k3s/snapshots
+      datasetEnableQuotas: true
+      datasetEnableReservation: false
+      datasetPermissionsMode: "0777"
+      datasetPermissionsUser: 0
+      datasetPermissionsGroup: 0
+    nfs:
+      shareHost: 10.0.0.63
+      shareAlldirs: false
+      shareAllowedHosts: []
+      shareAllowedNetworks: []
+      shareMaprootUser: root
+      shareMaprootGroup: root
+      shareMapallUser: ""
+      shareMapallGroup: ""
+controller:
+  driver:
+    image:
+      tag: next

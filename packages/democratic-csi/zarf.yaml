@@ -1,0 +1,14 @@
+kind: ZarfPackageConfig
+metadata:
+  name: democratic-csi
+  description: Deploy democratic-csi
+components:
+ - name: democratic-csi
+   required: true
+   charts:
+    - name: democratic-csi
+      namespace: democratic-csi
+      version: 0.15.0 
+      url: https://democratic-csi.github.io/charts
+      valuesFiles:
+        - "../../src/democratic-csi/values/values.yaml"

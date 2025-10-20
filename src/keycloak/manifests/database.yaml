@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak-postgres-deployment
+  namespace: keycloak
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      volumes:
+      - name: postgres-data
+        nfs:
+          server: truenas.lan
+          path: /mnt/media-pool/k3s/keycloak/data
+      containers:
+        - name: postgres-container
+          image: postgres:16.2
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+          envFrom:
+          - secretRef:
+              name: keycloak-db-secrets
