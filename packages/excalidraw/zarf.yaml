@@ -1,0 +1,15 @@
+kind: ZarfPackageConfig
+metadata:
+  name: excalidraw
+  description: Deploy excalidraw
+components:
+ - name: excalidraw
+   required: true
+   manifests:
+    - name: excalidraw
+      namespace: excalidraw
+      files:
+        - ../../src/excalidraw/manifests/deploy.yaml
+        - ../../src/excalidraw/manifests/ingress.yaml
+        - ../../src/excalidraw/manifests/service.yaml
+        - ../../src/excalidraw/manifests/cert.yaml
